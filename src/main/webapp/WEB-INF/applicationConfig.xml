@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd 
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd
+    http://www.springframework.org/schema/tx 
+  	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Add support for component scanning -->
+	<context:component-scan base-package="com.yousrasdn.myblog" />
+
+	<!-- Add support for conversion, formatting and validation support -->
+	<mvc:annotation-driven />
+
+	<!-- Define Spring MVC view resolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<!-- Used to locate static files (css) -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+
+	<!-- Configuring database data source -->
+	<bean id="myDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/blog?useSSL=false" />
+		<property name="username" value="blog" />
+		<property name="password" value="blog" />
+		
+		
+	</bean>
+
+	<!-- Setting up Hibernate session factory : the session factory depends 
+		on the data source -->
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="com.yousrasdn.myblog.entity" /> 	<!-- packages to scan for Hibernate @Entity classes -->
+
+		<!-- Specifying additional properties -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Setting up Hibernate transaction manager -->
+	<bean id="myTransactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+
+	<!-- Enabling configuration of transaction annotations -->
+	<tx:annotation-driven transaction-manager="myTransactionManager" />
+
+	
+	<!-- For Spring Security  -->
+	<!-- Configuring Authentication Provider -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder hash="bcrypt" />
+			<security:jdbc-user-service data-source-ref="myDataSource" 
+				users-by-username-query="SELECT username, password, enabled FROM users WHERE username=?"
+				authorities-by-username-query="SELECT username, authority FROM authorities WHERE username=?"
+			/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	
+	
+	
+
+
+
+</beans>
