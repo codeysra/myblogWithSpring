@@ -1,4 +1,4 @@
-package com.yousrasdn.myblog.security;
+package com.ysrsdn.myblog.security;
 
 import java.util.List;
 
@@ -26,12 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 */
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
-//		List<User> users = this.userService.findAll();
-//				
-//		for(User user : users) {
-//			auth.inMemoryAuthentication().withUser(user.getUsername()).password(user.getPass()).roles("USER");
-//		}
-		
+		// Already done in config file	
 	}
 	
 	/**
@@ -40,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		
-		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/*admin*/**").hasAnyRole("ADMIN")
+		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/admin*/**").hasAnyRole("ADMIN")
 		.and().formLogin();
 		
 //		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/*admin*/**").hasAnyRole("USER")

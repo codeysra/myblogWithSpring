@@ -1,4 +1,4 @@
-package com.yousrasdn.myblog.db;
+package com.ysrsdn.myblog.db;
 
 import java.io.IOException;
 import java.io.PrintWriter;

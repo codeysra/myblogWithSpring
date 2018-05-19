@@ -1,4 +1,4 @@
-package com.yousrasdn.myblog;
+package com.ysrsdn.myblog;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -12,7 +12,7 @@ public class App
     {
     	int i = 0;
     	while (i < 10) {
-    		String password = "admin";
+    		String password = "";
     		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     		String hashedPassword = passwordEncoder.encode(password);
 
