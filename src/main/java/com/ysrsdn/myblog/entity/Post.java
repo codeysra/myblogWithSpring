@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="post")
 public class Post {
@@ -40,12 +42,13 @@ public class Post {
 	private String category;
 	
 	@Column(name="published_on")
+	 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date publishedOn;
 	
 	@Column(name="img")
 	private String img;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private User user;

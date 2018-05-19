@@ -14,7 +14,7 @@
   	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Add support for component scanning -->
-	<context:component-scan base-package="com.yousrasdn.myblog" />
+	<context:component-scan base-package="com.ysrsdn.myblog" />
 
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven />
@@ -48,7 +48,7 @@
 	<bean id="mySessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="packagesToScan" value="com.yousrasdn.myblog.entity" /> 	<!-- packages to scan for Hibernate @Entity classes -->
+		<property name="packagesToScan" value="com.ysrsdn.myblog.entity" /> 	<!-- packages to scan for Hibernate @Entity classes -->
 
 		<!-- Specifying additional properties -->
 		<property name="hibernateProperties">
@@ -69,20 +69,21 @@
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
 
 	
+	
+	
+	
 	<!-- For Spring Security  -->
 	<!-- Configuring Authentication Provider -->
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:password-encoder hash="bcrypt" />
-			<security:jdbc-user-service data-source-ref="myDataSource" 
-				users-by-username-query="SELECT username, password, enabled FROM users WHERE username=?"
-				authorities-by-username-query="SELECT username, authority FROM authorities WHERE username=?"
-			/>
-		</security:authentication-provider>
-	</security:authentication-manager>
-	
-	
-	
+<!-- 	<security:authentication-manager> -->
+<!-- 		<security:authentication-provider> -->
+<!-- 			<security:password-encoder hash="bcrypt" /> -->
+<!-- 			<security:jdbc-user-service data-source-ref="myDataSource"  -->
+<!-- 				users-by-username-query="SELECT username, password, enabled FROM users WHERE username=?" -->
+<!-- 				authorities-by-username-query="SELECT username, authority FROM authorities WHERE username=?" -->
+<!-- 			/> -->
+<!-- 		</security:authentication-provider> -->
+<!-- 	</security:authentication-manager> -->
+ 
 	
 
 
