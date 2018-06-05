@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MyBlog from './components/MyBlog';
 
+ReactDOM.render(<MyBlog/>,document.getElementById("app"));
 
-ReactDOM.render(<div>Hello</div>,document.getElementById("app"));
-
-console.log("**********************");
+ 

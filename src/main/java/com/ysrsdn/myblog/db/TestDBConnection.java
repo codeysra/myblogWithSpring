@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,16 +33,22 @@ public class TestDBConnection extends HttpServlet {
 		// Connecting to database
 		PrintWriter out = response.getWriter();
 		out.println("Connecting to database: " + jdbcUrl);
-		
+		Connection myConn = null;
  		try {
 			String jdbcDriver = "com.mysql.jdbc.Driver";
 			Class.forName(jdbcDriver);
  		
-			Connection myConn = DriverManager.getConnection(jdbcUrl, user, pass);
+			myConn = DriverManager.getConnection(jdbcUrl, user, pass);
  			
 			out.println("Connected!");
  		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				myConn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		
