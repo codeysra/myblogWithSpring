@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MyBlog from './components/MyBlog';
+import AppRouter from './routers/AppRouter';
 
-ReactDOM.render(<MyBlog/>,document.getElementById("app"));
+ReactDOM.render(<AppRouter/>,document.getElementById("app"));
 
  
