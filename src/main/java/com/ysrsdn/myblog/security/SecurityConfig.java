@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.csrf.CsrfFilter;
 
 
 @Configuration
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		
 		http
-        .csrf().disable()
+        //.csrf().disable()
         .exceptionHandling()
         .authenticationEntryPoint(restAuthenticationEntryPoint)
         .and()
@@ -58,6 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         .failureHandler(new SimpleUrlAuthenticationFailureHandler())
         .and()
         .logout();
+		http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
+		// CSRF tokens handling
+        http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
  		 
 	}
 	
