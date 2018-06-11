@@ -1,10 +1,13 @@
 package com.ysrsdn.myblog.security;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 @Configuration
@@ -47,21 +53,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		
 		http
-        //.csrf().disable()
-        .exceptionHandling()
-        .authenticationEntryPoint(restAuthenticationEntryPoint)
-        .and()
-        .authorizeRequests()
-        .antMatchers("/login").permitAll().antMatchers("/admin*/**").hasAnyRole("ADMIN")
-        .and()
-        .formLogin()
-        .successHandler(authenticationSuccessHandler)
-        .failureHandler(new SimpleUrlAuthenticationFailureHandler())
-        .and()
-        .logout();
-		http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
+		.csrf().disable()
+		.cors()
+		;
+//		.and()
+//        .exceptionHandling()
+//        .authenticationEntryPoint(restAuthenticationEntryPoint)
+//        .and()
+//        .authorizeRequests()
+//        .antMatchers(HttpMethod.OPTIONS,"/**").permitAll();
+//        .antMatchers("/login").permitAll().antMatchers("/admin*/**").hasAnyRole("ADMIN");
+//        .and()
+//        .formLogin()
+//        .successHandler(authenticationSuccessHandler)
+//        .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+//        .and()
+//        .logout();
+        
+ 		
 		// CSRF tokens handling
-        http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
+     //  http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
  		 
 	}
 	
@@ -74,4 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return new SimpleUrlAuthenticationFailureHandler();
     }
 	
+  
+    
+    
 }
