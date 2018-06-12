@@ -41,9 +41,7 @@ public class AdminPostController {
 	@RequestMapping(value="",method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public List<Post> retrieveAllPosts(HttpServletRequest req){
-//		 CsrfToken token = (CsrfToken)req.getAttribute(CsrfToken.class.getName());
-//		 
-//		System.out.println("*********  "+token.getToken());
+		
 		return this.postService.findAll();
 	}
 	

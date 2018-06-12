@@ -31,6 +31,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 
+
 	<!-- Configuring database data source -->
 	
 <!-- Before Switching to a DataSource Pool -->	

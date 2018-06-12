@@ -18,6 +18,7 @@ package com.ysrsdn.myblog.security;
 
 
 import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.ServletException;
@@ -34,6 +35,7 @@ import java.io.IOException;
  * @author Allan Ditzel
  * @since 1.0
  */
+ 
 public class CsrfTokenResponseHeaderBindingFilter extends OncePerRequestFilter {
     protected static final String REQUEST_ATTRIBUTE_NAME = "_csrf";
     protected static final String RESPONSE_HEADER_NAME = "X-CSRF-HEADER";
