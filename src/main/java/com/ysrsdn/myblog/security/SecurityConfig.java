@@ -84,8 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         .and()
         .logout()
         .and()
-        .addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
-    
+        //.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
+        .csrf().disable();
 		 
 	}
 	
@@ -110,8 +110,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         configuration.setAllowCredentials(true);
         // setAllowedHeaders is important! Without it, OPTIONS preflight request
         // will fail with 403 Invalid CORS request
-        configuration.setAllowedHeaders(Collections.unmodifiableList(Arrays.asList("Access-Control-Allow-Headers","Authorization", "Cache-Control", "Content-Type")));
-        configuration.setExposedHeaders(Collections.unmodifiableList(Arrays.asList("x-csrf-token ","x-xsrf-token","x-csrf-header","Access-Control-Allow-Headers","Authorization", "Cache-Control", "Content-Type")));
+        configuration.setAllowedHeaders(Collections.unmodifiableList(Arrays.asList("Access-Control-Allow-Headers","Authorization", "Cache-Control", "Content-Type","Access-Control-Request-Headers","x-csrf-token")));
+        configuration.setExposedHeaders(Collections.unmodifiableList(Arrays.asList("x-csrf-token","x-xsrf-token","x-csrf-header","Access-Control-Allow-Headers","Authorization", "Cache-Control", "Content-Type")));
        
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

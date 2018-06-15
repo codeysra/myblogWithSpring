@@ -35,45 +35,46 @@
 	<!-- Configuring database data source -->
 	
 <!-- Before Switching to a DataSource Pool -->	
-<!-- 	<bean id="myDataSource" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!-- 		<property name="url" -->
-<!-- 			value="jdbc:mysql://localhost:3306/blog?useSSL=false" /> -->
-<!-- 		<property name="username" value="blog" /> -->
-<!-- 		<property name="password" value="blog" /> -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/blog?useSSL=false" />
+		<property name="username" value="blog" />
+		<property name="password" value="blog" />
+	</bean>
+
+<!-- Testing DataSource Pool with Hikari -->
+<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!-- 		<property name="locations"> -->
+<!-- 			<list> -->
+<!-- 				<value>classpath:hibernate.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig"> -->
+<!-- 		<property name="poolName" value="springHikariCP" /> -->
+<!-- 		<property name="connectionTestQuery" value="SELECT 1" /> -->
+<!-- 		<property name="dataSourceClassName" value="${hibernate.dataSourceClassName}" /> -->
+<!-- 		<property name="maximumPoolSize" value="${hibernate.hikari.maximumPoolSize}" /> -->
+<!-- 		<property name="idleTimeout" value="${hibernate.hikari.idleTimeout}" /> -->
+
+<!-- 		<property name="dataSourceProperties"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="url">${dataSource.url}</prop> -->
+<!-- 				<prop key="user">${dataSource.username}</prop> -->
+<!-- 				<prop key="password">${dataSource.password}</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
 <!-- 	</bean> -->
 
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:hibernate.properties</value>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="poolName" value="springHikariCP" />
-		<property name="connectionTestQuery" value="SELECT 1" />
-		<property name="dataSourceClassName" value="${hibernate.dataSourceClassName}" />
-		<property name="maximumPoolSize" value="${hibernate.hikari.maximumPoolSize}" />
-		<property name="idleTimeout" value="${hibernate.hikari.idleTimeout}" />
-
-		<property name="dataSourceProperties">
-			<props>
-				<prop key="url">${dataSource.url}</prop>
-				<prop key="user">${dataSource.username}</prop>
-				<prop key="password">${dataSource.password}</prop>
-			</props>
-		</property>
-	</bean>
-
-	<!-- HikariCP configuration -->
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-		destroy-method="close">
-		<constructor-arg ref="hikariConfig" />
-	</bean>
-
+ 		<!-- HikariCP configuration --> 
+<!-- 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" -->
+<!-- 		destroy-method="close"> -->
+<!-- 		<constructor-arg ref="hikariConfig" /> -->
+<!-- 	</bean> -->
+<!-- End - Testing DataSource Pool with Hikari -->
 
 	<!-- Setting up Hibernate session factory : the session factory depends 
 		on the data source -->

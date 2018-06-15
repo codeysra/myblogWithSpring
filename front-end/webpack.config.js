@@ -1,4 +1,5 @@
 const path= require("path");
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry:'./src/app.js',
@@ -6,6 +7,7 @@ module.exports = {
         path:path.join(__dirname,'public'),
         filename:"bundle.js"
     },
+    mode: "development",
     module:{
         rules:[{
             loader:'babel-loader',
@@ -25,5 +27,10 @@ module.exports = {
         contentBase: path.join(__dirname,'public'),
         historyApiFallback:true
 
-     }
+     },
+     plugins: [
+       new htmlWebpackPlugin({
+         template: './src/index.html'
+       })
+     ]
 };

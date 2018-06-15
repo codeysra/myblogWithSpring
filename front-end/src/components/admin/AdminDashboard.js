@@ -10,13 +10,7 @@ export default class AdminDashboard extends Component{
             "username":"admin",
             "password":"admin"
         };
-        // var xhr = new XMLHttpRequest();
-        // xhr.open("get","http://localhost:8080/myblog/admin/post/",true);
-        // xhr.setRequestHeader("X-CSRF-Token" , "Fetch");
-        // xhr.onreadystatechange = function () {
-        //     console.log(xhr.getResponseHeader("X-CSRF-TOKEN"));
-        // }
-        // xhr.send(null);
+ 
         
         // axios.post('http://localhost:8080/myblog/login',payload)
         // .then(function(response){
@@ -35,7 +29,7 @@ export default class AdminDashboard extends Component{
             console.log(response);
         }).catch(error => {
             
-            console.log(error.response);
+            console.log(error.response.headers['x-csrf-token']);
         });
     };
     render(){
