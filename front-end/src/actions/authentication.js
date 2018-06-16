@@ -1,13 +1,11 @@
 
 //ADD_AUTH
 export const  addAuth=({
-    username,
-    isLoggedIn
+    username
 } = {})=>({
     type:"ADD_AUTH",
     authentication:{
-        username,
-        isLoggedIn
+        username
     }
 });
 

@@ -65,17 +65,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 	 
-	    
-	    http
-		.exceptionHandling()
-        .authenticationEntryPoint(restAuthenticationEntryPoint);
+	   
 	    
 		http
 		.cors()
 		.and()
         .authorizeRequests()
         .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-         .antMatchers("/login").permitAll().antMatchers("/admin*/**").hasAnyRole("ADMIN")
+        // .antMatchers("/login").permitAll().antMatchers("/admin*/**").hasAnyRole("ADMIN")
         .and()
         
         .formLogin()
@@ -83,6 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         .failureHandler(new SimpleUrlAuthenticationFailureHandler())
         .and()
         .logout()
+        .and()
+        .exceptionHandling()
+        .authenticationEntryPoint(restAuthenticationEntryPoint)
         .and()
         //.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
         .csrf().disable();

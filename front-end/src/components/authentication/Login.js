@@ -1,17 +1,22 @@
 import React from 'react';
 import axios from 'axios';
-
+import {connect} from 'react-redux';
+import {addAuth, removeAuth} from './../../actions/authentication';
 class Login extends React.Component{
     state={
         username:"",
         password:"",
-        csrf:""
+        csrf:"" 
     };
     componentDidMount(){
-      
-        
+         
+       if(this.props.authentication.length>0){
+            this.props.history.push('/admin');
+        }
+        console.log(this.props.authentication);
+
     }
-    handleSubmit=(e,store)=>{
+    handleSubmit=(e)=>{
         e.preventDefault();
         const data='username='+this.state.username+'&password='+this.state.password;
        
@@ -25,15 +30,24 @@ class Login extends React.Component{
             }
         })
         .then(response=>{
-            document.getElementById("error").innerHTML="";
-            console.log(response);
-            console.log(store.getState());
-            store.authentication.map(user => user.username);
-        }).catch(error => {
-            
-           document.getElementById("error").innerHTML="Error! Invalid Credentials."
-        });
         
+             this.props.dispatch(addAuth({
+                username: this.state.username,
+                isLoggedIn:'yes'
+            }));
+
+            this.props.history.push('/admin');
+        })
+        .catch(error => {
+            console.log("=========="+error);
+            if(error.response.status===401)
+                document.getElementById("error").innerHTML="Error! Invalid Credentials.";
+            else if(error.response.status===403)
+                document.getElementById("error").innerHTML="Error! Invalid token.";
+         });
+         
+            
+       
     }
   
     render(){
@@ -41,11 +55,11 @@ class Login extends React.Component{
             <div>
                 <h1>Login</h1>
                 <div id="error"></div>
-                <form id="create-course-form">
+                <form id="create-course-form" >
                     <input type="text" placeholder="Your username" value={this.state.username}   name="username" onChange={e=>this.setState({username:e.target.value})} />
                     <input type="password" placeholder="Your password" value={this.state.password}   name="password" onChange={e=>this.setState({password:e.target.value})}/>
                     <button type="submit" 
-                    onClick={e=>this.handleSubmit(e)}
+                    onClick={(e)=>this.handleSubmit(e)}
                     >Login </button>
                 </form>
 
@@ -54,4 +68,11 @@ class Login extends React.Component{
     };
 }
 
-export default Login;
+const mapStateToProps = (state)=>{
+    return{
+        authentication:state.authentication,
+    }
+};
+
+export default connect(mapStateToProps)(Login);
+   

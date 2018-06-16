@@ -3,24 +3,22 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import {addAuth} from './actions/authentication';
-
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 // Configuring the store
 const store = configureStore();
 
-store.dispatch(addAuth({
-    username:'admin',
-    isLoggedIn:'yes'
-}));
+let persistor = persistStore(store);
 
 
-console.log(store.getState());
 
 
 ReactDOM.render(
     <Provider store={store}>
-        <AppRouter/>
+        <PersistGate loading={null} persistor={persistor}>
+            <AppRouter/>
+        </PersistGate>
     </Provider>,
     document.getElementById("app")
 );
