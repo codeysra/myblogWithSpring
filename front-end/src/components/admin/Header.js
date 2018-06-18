@@ -1,17 +1,17 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {addAuth, removeAuth} from './../../actions/authentication';
 import createHistory from 'history/createBrowserHistory'
-import axios from 'axios';
+import {Link} from 'react-router-dom';
 
-export const history = createHistory()
+
+export const history = createHistory();
 
 const Header = (props)=>{
     return (
         <header>
           
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">Admin Dashboard</a>
+                <Link className="navbar-brand" to="/admin">Admin Dashboard</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
