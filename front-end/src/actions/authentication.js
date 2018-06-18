@@ -1,11 +1,13 @@
 
 //ADD_AUTH
 export const  addAuth=({
-    username
+    username,
+    jwt
 } = {})=>({
     type:"ADD_AUTH",
     authentication:{
-        username
+        username,
+        jwt
     }
 });
 

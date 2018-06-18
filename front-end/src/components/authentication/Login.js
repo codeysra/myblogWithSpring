@@ -6,7 +6,8 @@ class Login extends React.Component{
     state={
         username:"",
         password:"",
-        csrf:"" 
+        csrf:"" ,
+        sId:undefined
     };
     componentDidMount(){
          
@@ -30,20 +31,23 @@ class Login extends React.Component{
             }
         })
         .then(response=>{
-        
+            console.log(response.headers["authorization"]);
              this.props.dispatch(addAuth({
                 username: this.state.username,
-                isLoggedIn:'yes'
+                jwt:response.headers["authorization"]
             }));
 
-            this.props.history.push('/admin');
+          this.props.history.push('/admin');
+
+           
         })
         .catch(error => {
-            console.log("=========="+error);
+            console.log(error.response);
             if(error.response.status===401)
                 document.getElementById("error").innerHTML="Error! Invalid Credentials.";
             else if(error.response.status===403)
                 document.getElementById("error").innerHTML="Error! Invalid token.";
+
          });
          
             
