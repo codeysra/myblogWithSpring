@@ -79,7 +79,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.cors();
-		
 		http
         .addFilterBefore(new JWTAuthenticationFilter(
                         "/login", this.tokenProvider, authenticationManager()),
@@ -123,10 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         
 		
-		http
-        .logout().clearAuthentication(true)
-        .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.ACCEPTED)).deleteCookies("JSESSIONID")
-        .invalidateHttpSession(true) ;
+	
 
 	}
 	

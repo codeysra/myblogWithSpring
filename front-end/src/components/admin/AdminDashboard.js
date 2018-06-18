@@ -10,46 +10,54 @@ class AdminDashboard extends Component{
     };
 
     componentDidMount(){
-        console.log("*****");
-        console.log(this.props.authentication[0]["jwt"]);
-        if(this.props.authentication.length===0){
-            this.props.history.push('/login');
+        
+        if(this.props.authentication.length==0){
+            this.props.higherProps.history.push('/login');
+        }else{
+            axios({
+                method:'get',
+                url:'http://localhost:8080/myblog/admin/post/',
+                
+                headers: {
+                    Authorization:this.props.authentication[0]["jwt"]
+                }
+            })
+            .then(response=>{
+                 this.setState(()=>({posts:response.data}));
+                 
+            })
+            .catch(error => {
+                console.log("An error occured: "+error);
+                console.log(error.response);
+                 
+             });
         }
-        axios({
-            method:'get',
-            url:'http://localhost:8080/myblog/admin/post/',
-            
-            headers: {
-                Authorization:this.props.authentication[0]["jwt"]
-            }
-        })
-        .then(response=>{
-             
-            this.setState(()=>({posts:response.data}));
-console.log(this.state.posts);
-           const ar=[{name:"a"},{name:"b"}];
-           this.state.posts.forEach(el=>{
-               <div>Hoo</div>
-           })
-            
-        })
-        .catch(error => {
-            console.log("An error occured: "+error);
-            console.log(error.response);
-             
-         });
+        
     }
 
     
 
     render(){
+        
+       
         return (
             <div className="container">
                 <NavLink to="/admin/post/add" className="btn btn-outline-primary" exact={true}>Add New Post</NavLink>
                
                 <div id="posts-area">
-                    {console.log(this.state.posts.length)}
-                
+               
+                {
+                    
+                    Array.from(this.state.posts).map((post)=>{
+
+                        return  <div key={post.id} className="card">
+                                    <h2 className="card-title">{post.title}</h2>
+                                    <p className="card-text">{post.smallDesc}</p>
+                                    <NavLink to="/admin/post?id" exact={true}>Read>></NavLink>
+
+                                </div>
+                    })
+                }
                 </div>
 
 
