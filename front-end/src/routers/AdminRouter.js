@@ -1,7 +1,7 @@
 import React from 'React';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import AdminDashboard from './../components/admin/AdminDashboard.js';
-import AddPost from '../components/admin/CRUD/AddPost';
+import CreatePost from '../components/admin/CRUD/CreatePost';
 import UpdatePost from '../components/admin/CRUD/UpdatePost';
 import Header from './../components/admin/Header';
 import NotFoundPage from './../components/NotFoundPage';
@@ -17,8 +17,9 @@ const AdminRouter = (props)=>{
                 <Header higherProps={props}/>
                 <Switch>
                     <Route path="/admin"  render={()=><AdminDashboard higherProps={props}/>}  exact={true}/>
-                    <Route path="/admin/post/:id" component={UpdatePost}  />
-                    <Route path="/admin/post/add" render={()=><AddPost higherProps={props}/>}/>
+                    <Route path="/admin/post/create" render={()=><CreatePost higherProps={props}/>} exact={true}/>
+                    <Route path="/admin/post/update/:id" component={UpdatePost}  exact={true}/>
+                    
                     <Route component={NotFoundPage}/>
                 </Switch>
             </div>    

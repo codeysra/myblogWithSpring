@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import createHistory from 'history/createBrowserHistory'
 import {Link} from 'react-router-dom';
-
+import {removeAuth} from './../../actions/authentication'
 
 export const history = createHistory();
 

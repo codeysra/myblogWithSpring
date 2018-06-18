@@ -72,7 +72,7 @@ class AdminDashboard extends Component{
     displayPosts =()=>{
         return (
             <div className="container">
-                <Link to="/admin/post/add" className="btn btn-outline-primary">Add New Post</Link>
+                <Link to="/admin/post/create" className="btn btn-outline-primary">Add New Post</Link>
                
                 <div id="posts-area">
                
@@ -83,7 +83,7 @@ class AdminDashboard extends Component{
                         return  <div key={post.id} className="card">
                                     <h2 className="card-title">{post.title}</h2>
                                     <p className="card-text">{post.smallDesc}</p>
-                                    <Link to={`/admin/post/${post.id}`} >Update>></Link>
+                                    <Link to={`/admin/post/update/${post.id}`} >Update>></Link>
                                     <button className="btn btn-danger" id="delete-post" onClick={(event)=>this.deletePost(event,post)}>Delete</button>
                                 </div>
                     })
