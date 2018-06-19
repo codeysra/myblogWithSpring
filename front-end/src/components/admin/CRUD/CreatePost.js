@@ -27,7 +27,7 @@ class CreatePost extends Component {
       const  formattedDate = today.getDate()+"-"+(today.getMonth()+1) + "-" + today.getFullYear();
 
       this.setState({publishedOn:formattedDate},function(){
-            console.log("/"+this.state.publishedOn+"/");
+          
             const data={
                 title:this.state.title,
                 smallDesc:this.state.smallDesc,
@@ -49,13 +49,16 @@ class CreatePost extends Component {
                 }
             })
             .then(response=>{
-                this.setState(()=>({posts:response.data}));
+                 document.querySelector("#msg").classList.add("alert-success");
+                 document.querySelector("#msg").classList.remove("alert-danger");
+                 document.querySelector("#msg").innerHTML="Your post was created!";
                 
             })
             .catch(error => {
-                console.log("An error occured: "+error);
-                console.log(error.response);
-                
+                 console.log(error.response);
+                 document.querySelector("#msg").classList.add("alert-danger");
+                 document.querySelector("#msg").classList.remove("alert-success");
+                 document.querySelector("#msg").innerHTML="An error occurred! Unable to create your post.";
             });
       });
       
@@ -66,8 +69,9 @@ class CreatePost extends Component {
     return (
       <div className="container" id="create-post">
         <h1>Create Post (Add New Post)</h1>
-
-        <form>
+         
+        <div id="msg" className="alert"></div>
+        <form id="formm">
           <div className="form-group" >
                 <label>Title</label>
                 <input type="text" className="form-control" value={this.state.title} onChange={e=>this.setState(({title:e.target.value}))}/>
