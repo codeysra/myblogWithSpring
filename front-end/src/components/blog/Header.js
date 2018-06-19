@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 const Header = ()=>(
-    <div>
+    <div id="blog-header">
         <nav className="navbar navbar-expand-md navbar-light bg-light ">
             <div className="container">
                 <Link className="navbar-brand" to="/">YS<span>.</span></Link>

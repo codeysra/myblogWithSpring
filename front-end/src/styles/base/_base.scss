@@ -11,31 +11,18 @@ html{
 }
 
 body{
-    font-size: $m-size; //16px = 1.6rem
+    font-size: $m-size !important; //16px = 1.6rem
     color: #333 !important;
-    font-family: Lato,Helvetica,Arial, sans-serif  !important;
+    font-family: Helvetica,Arial, sans-serif  !important;
     font-weight: 300  !important;
 }
 
+.btn{
+    font-size: $m-size !important;  
+}
 
 h1,h2,h3,p{
     margin: 0;
 }
 
-a:link,a:hover,a:visited,a:active{
-    font-size: $m-size;
-    text-decoration: none;
-}
  
-/* tyle for all sections expect Header */
-.sections{
-    padding:$xl-size 0;
-}
-.sections-h1{
-    display: inline-block;
-    margin-bottom: $l-size;
-}
-
-.dark-background{
-    background-color: lighten(rgb(215, 215, 223),2%);
-}

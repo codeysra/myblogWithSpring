@@ -1,4 +1,9 @@
 @import './base/settings';
+@import './base/base';
 @import './components/admin/header';
 @import './components/admin/admin-dashboard';
 @import './components/admin/create-post';
+
+@import './components/blog/header';
+@import './components/blog/footer';
+@import './components/blog/main-content';

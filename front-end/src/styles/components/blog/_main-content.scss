@@ -1,0 +1,12 @@
+#outer-content-container{
+    padding: $xl-size 0;
+}
+
+#posts-container .card{
+    margin-bottom: $l-size;
+    padding: $m-size;
+}
+
+#posts-container .card .card-text{
+    text-align: justify !important;
+}
