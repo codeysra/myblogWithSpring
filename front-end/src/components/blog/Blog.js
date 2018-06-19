@@ -42,15 +42,19 @@ class Blog extends React.Component{
                 <div id="outer-content-container" className=" container">
                     <div className="row">
                         <div className="col-lg-8">
-                            <div id="posts-container">
+                            <div className="posts-container">
                                 {
                         
                                     Array.from(this.state.posts).map((post)=>{
                 
                                         return  <div key={post.id} className="card">
                                                     <h1 className="card-title">{post.title}</h1>
-                                                    <p className="card-text">{post.smallDesc}</p>
-                                                    <Link to={`/post/${post.id}`} >Read>></Link>
+                                                    <div className="post-info py-4">
+                                                        <span>Published on: {post.publishedOn}</span>
+                                                        <span className="ml-3">Category: {post.category}</span>
+                                                    </div>
+                                                    <p className="card-text mb-3">{post.smallDesc}</p>
+                                                    <Link to={`/post/${post.id}`}>Read>></Link>
                                                  </div>
                                     })
                                 }

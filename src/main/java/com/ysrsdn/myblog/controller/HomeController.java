@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,4 +44,10 @@ public class HomeController {
 	}
   
 
+	// Retrieve a post given its id
+	@RequestMapping(value="/posts/{id}",method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public Post retrievePost(@PathVariable("id") int id){
+		return this.postService.find(id);
+	}
 }

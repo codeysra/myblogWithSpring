@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { addAuth, removeAuth } from "./../../../actions/authentication";
-import { NavLink } from "react-router-dom";
+
+import { Editor } from 'react-draft-wysiwyg';
+import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class CreatePost extends Component {
     state={

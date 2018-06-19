@@ -18,7 +18,7 @@ const AdminRouter = (props)=>{
                 <Switch>
                     <Route path="/admin"  render={()=><AdminDashboard higherProps={props}/>}  exact={true}/>
                     <Route path="/admin/post/create" render={()=><CreatePost higherProps={props}/>} exact={true}/>
-                    <Route path="/admin/post/update/:id" component={UpdatePost}  exact={true}/>
+                    <Route path="/admin/post/update/:id"  render={()=><UpdatePost higherProps={props}/>} exact={true}/>
                     
                     <Route component={NotFoundPage}/>
                 </Switch>

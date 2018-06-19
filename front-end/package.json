@@ -17,6 +17,7 @@
     "popper.js": "^1.14.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-draft-wysiwyg": "^1.12.13",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.0",
     "redux": "^4.0.0",
