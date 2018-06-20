@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -27,22 +31,30 @@ public class Post {
 	private int id;
 	
 	@Column(name="title")
+	@NotNull
+	@NotBlank
 	private String title;
 	
 	@Column(name="small_desc")
+	@NotNull
+	@NotBlank
 	private String smallDesc;
 	
 	@Column(name="content")
+	@NotNull
+	@NotBlank
 	private String content;
 	
 	@Column(name="status")
 	private boolean status;
 	
 	@Column(name="category")
+	@NotNull
+	@NotBlank
 	private String category;
 	
 	@Column(name="published_on")
-	 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date publishedOn;
 	
 	@Column(name="img")

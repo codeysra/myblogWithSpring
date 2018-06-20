@@ -54,7 +54,7 @@ class CreatePost extends Component {
                 status:false,
                 category:this.state.category,
                 publishedOn:this.state.publishedOn,
-                img:"",
+                img:this.state.img,
                 "user": {
                     "username": "admin"
                 }
@@ -98,9 +98,12 @@ class CreatePost extends Component {
           </div>
           <div className="form-group" >
                 <label>Small Desc</label>
-                <input type="text" className="form-control" value={this.state.smallDesc} onChange={e=>this.setState({smallDesc:e.target.value})}/>
+                <textarea class="form-control" rows="3" value={this.state.smallDesc} onChange={e=>this.setState({smallDesc:e.target.value})}></textarea>
           </div>
-                    
+          <div className="form-group" >
+            <label>img</label>
+            <input type="text" className="form-control" value={this.state.img} onChange={e=>this.setState({img:e.target.value})}/>
+          </div>    
           <div className="form-group">
             <label >Category</label>
             <select className="form-control" onChange={e=>this.setState({category:e.target.value})}  value={this.state.category}>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
+import img from '../../../img/index';
 
 class AdminDashboard extends Component{
     state={
@@ -83,7 +84,7 @@ class AdminDashboard extends Component{
                         return  <div key={post.id} className="card">
                                     <h2 className="card-title">{post.title}</h2>
                                     <p className="card-text">{post.smallDesc}</p>
-                                    <p>************************************************</p>
+                                    
                                     <div  dangerouslySetInnerHTML={{ __html: post.content }}></div>
                                    
                                     <Link to={`/admin/post/update/${post.id}`} >Update>></Link>
