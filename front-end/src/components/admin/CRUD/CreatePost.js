@@ -2,20 +2,38 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 
-import { Editor } from 'react-draft-wysiwyg';
-import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// Require Editor JS files.
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+
+// Require Editor CSS files.
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+
+// Require Font Awesome.
+import 'font-awesome/css/font-awesome.css';
+
+import FroalaEditor from 'react-froala-wysiwyg';
+
 
 class CreatePost extends Component {
-    state={
-        title:"",
-        smallDesc:"",
-        content:"",
-        status:false,
-        category:"Test",
-        publishedOn:"",
-        img:""
-    }
+   
 
+  state={
+    model: '',
+    title:"",
+    smallDesc:"",
+    content:"",
+    status:false,
+    category:"Test",
+    publishedOn:"",
+    img:""
+  }
+  handleModelChange= (model) =>{
+    this.setState({
+      model: model
+    });
+    console.log(this.state.model);
+  }
   componentDidMount() {
     if (this.props.authentication.length == 0) {
       this.props.higherProps.history.push("/login");
@@ -32,7 +50,7 @@ class CreatePost extends Component {
             const data={
                 title:this.state.title,
                 smallDesc:this.state.smallDesc,
-                content:this.state.content,
+                content:this.state.model,
                 status:false,
                 category:this.state.category,
                 publishedOn:this.state.publishedOn,
@@ -63,11 +81,12 @@ class CreatePost extends Component {
             });
       });
       
-      
-      
   }
+ onChange = (editorState) => this.setState({editorState});
+
   render() {
-    return (
+   
+     return (
       <div className="container" id="create-post">
         <h1>Create Post (Add New Post)</h1>
          
@@ -81,13 +100,7 @@ class CreatePost extends Component {
                 <label>Small Desc</label>
                 <input type="text" className="form-control" value={this.state.smallDesc} onChange={e=>this.setState({smallDesc:e.target.value})}/>
           </div>
-          <div className="form-group" >
-                <label>Content</label>
-                <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" 
-                value={this.state.content} onChange={e=>this.setState({content:e.target.value})}>
-                </textarea>
-          </div>
-          
+                    
           <div className="form-group">
             <label >Category</label>
             <select className="form-control" onChange={e=>this.setState({category:e.target.value})}  value={this.state.category}>
@@ -96,9 +109,15 @@ class CreatePost extends Component {
                 <option value="Java">Java</option>
                  
             </select>
-        </div>
-          <button className="btn btn-outline-success" onClick={(e)=>this.createPost(e)}>Add Post</button>
+          </div>
+          <label>Content</label>
+          <FroalaEditor tag='textarea' model={this.state.model}
+          onModelChange={this.handleModelChange}/>
+        
+           <button className="btn btn-outline-success my-5" onClick={(e)=>this.createPost(e)}>Add Post</button>
+           
         </form>
+       
       </div>
     );
   }

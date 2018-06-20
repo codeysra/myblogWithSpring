@@ -14,7 +14,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
  
 
 import 'normalize.css/normalize.css'; 
-import "./styles/styles.scss"; 
+import "./styles/styles.scss";  
 
 
 // Configuring the store

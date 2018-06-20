@@ -83,6 +83,9 @@ class AdminDashboard extends Component{
                         return  <div key={post.id} className="card">
                                     <h2 className="card-title">{post.title}</h2>
                                     <p className="card-text">{post.smallDesc}</p>
+                                    <p>************************************************</p>
+                                    <div  dangerouslySetInnerHTML={{ __html: post.content }}></div>
+                                   
                                     <Link to={`/admin/post/update/${post.id}`} >Update>></Link>
                                     <button className="btn btn-danger" id="delete-post" onClick={(event)=>this.deletePost(event,post)}>Delete</button>
                                 </div>

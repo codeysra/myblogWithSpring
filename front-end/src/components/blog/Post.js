@@ -45,7 +45,8 @@ class Post extends React.Component{
                                 <span>Published on: {this.state.post.publishedOn}</span>
                                 <span className="ml-3">Category: {this.state.post.category}</span>
                             </div>
-                            <p className="card-text mb-3">{this.state.post.content}</p>
+                             
+                            <div  dangerouslySetInnerHTML={{ __html: this.state.post.content }}></div>
                         </div>
                     </div>
                 </div>

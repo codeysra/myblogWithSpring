@@ -12,16 +12,24 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
+    "draft-js": "^0.10.5",
+    "file-loader": "^1.1.11",
+    "font-awesome": "^4.7.0",
+    "font-awesome-webpack": "^0.0.5-beta.2",
+    "froala-editor": "^2.8.1",
     "jquery": "^3.3.1",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
     "normalize.css": "^8.0.0",
     "popper.js": "^1.14.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-draft-wysiwyg": "^1.12.13",
+    "react-froala-wysiwyg": "^2.8.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.0",
     "redux": "^4.0.0",
-    "redux-persist": "^5.10.0"
+    "redux-persist": "^5.10.0",
+    "url-loader": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

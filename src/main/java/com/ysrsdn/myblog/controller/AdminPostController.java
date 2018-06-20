@@ -32,6 +32,7 @@ public class AdminPostController {
 	@RequestMapping(value="",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPost(@RequestBody Post post) {
+		
 		this.postService.saveOrUpdate(post);
 	}
 	
