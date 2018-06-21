@@ -49,7 +49,7 @@ public class Post {
 	private boolean status;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="category_name")
+	@JoinColumn(name="category_id")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private Category category;
 	

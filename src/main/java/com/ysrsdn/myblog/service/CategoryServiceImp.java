@@ -29,13 +29,13 @@ public class CategoryServiceImp implements CategoryService{
 
 	@Transactional
 	@Override
-	public Category find(String name) {
+	public Category find(int name) {
 		return this.categoryDAO.find(name);
 	}
 
 	@Transactional
 	@Override
-	public void delete(String name) {
+	public void delete(int name) {
 		this.categoryDAO.delete(name);
 	}
 

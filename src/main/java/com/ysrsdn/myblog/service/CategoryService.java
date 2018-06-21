@@ -10,7 +10,7 @@ public interface CategoryService {
 	
 	public List<Category> findAll();
 	
-	public Category find(String name);
+	public Category find(int id);
 	
-	public void delete(String name);
+	public void delete(int id);
 }

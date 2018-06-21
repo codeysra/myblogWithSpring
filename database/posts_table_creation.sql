@@ -16,5 +16,7 @@ CREATE TABLE post(
 );
 
 /* Adding foreign key constraint on category: 20/06/2018 */
-ALTER TABLE post ADD category_name varchar(200) NOT NULL;
-ALTER TABLE post ADD CONSTRAINT fk_category_name FOREIGN KEY(category_name) references category(name);
+ALTER TABLE post ADD category_id int(11) NOT NULL ;
+ALTER TABLE post ADD CONSTRAINT fk_category_id FOREIGN KEY(category_id) references category(id);
+
+

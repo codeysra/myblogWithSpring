@@ -45,22 +45,22 @@ public class CategoryDAOImp implements CategoryDAO {
 	}
 
 	@Override
-	public Category find(String name) {
+	public Category find(int id) {
 		// Get the current hibernate session
 		Session session = this.sessionFactory.getCurrentSession();
 
 		// Find the category and return it
-		return session.find(Category.class, name);
+		return session.find(Category.class, id);
 	}
 
 	@Override
-	public void delete(String name) {
+	public void delete(int id) {
 		// Get the current hibernate session
 		Session session = this.sessionFactory.getCurrentSession();
 
-		// Delete the post using 'name' (which is the primary key of Category)
-		TypedQuery query = session.createQuery("delete from Category where name=:theName"); // Setting up a parameter "theName"
-		query.setParameter("theName", name); // binding the parameter "theName" to the actual value
+		// Delete the post using 'id'
+		TypedQuery query = session.createQuery("delete from Category where id=:theId"); // Setting up a parameter "theId"
+		query.setParameter("theId", id); // binding the parameter "theId" to the actual value
 
 		query.executeUpdate();
 
