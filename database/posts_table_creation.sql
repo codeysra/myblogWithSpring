@@ -14,3 +14,7 @@ CREATE TABLE post(
 	PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(username)
 );
+
+/* Adding foreign key constraint on category: 20/06/2018 */
+ALTER TABLE post ADD category_name varchar(200) NOT NULL;
+ALTER TABLE post ADD CONSTRAINT fk_category_name FOREIGN KEY(category_name) references category(name);

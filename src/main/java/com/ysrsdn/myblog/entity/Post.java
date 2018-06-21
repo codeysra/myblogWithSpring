@@ -48,10 +48,10 @@ public class Post {
 	@Column(name="status")
 	private boolean status;
 	
-	@Column(name="category")
-	@NotNull
-	@NotBlank
-	private String category;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="category_name")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	private Category category;
 	
 	@Column(name="published_on")
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
@@ -65,8 +65,7 @@ public class Post {
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private User user;
 
-	
-	
+ 	
 	public String getTitle() {
 		return title;
 	}
@@ -99,11 +98,11 @@ public class Post {
 		this.status = status;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
