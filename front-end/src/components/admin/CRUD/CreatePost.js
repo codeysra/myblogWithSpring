@@ -19,10 +19,8 @@ class CreatePost extends Component {
    
 
   state={
-    post:{
-      
-    },
     model: '',
+    
     title:"",
     smallDesc:"",
     content:"",
@@ -30,6 +28,7 @@ class CreatePost extends Component {
     category:"Test",
     publishedOn:"",
     img:"",
+
     categories:[]
   }
   handleModelChange= (model) =>{

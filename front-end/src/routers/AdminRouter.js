@@ -17,12 +17,12 @@ const AdminRouter = (props)=>{
             <div>
                 <Header higherProps={props}/>
                 <Switch>
-                    <Route path="/admin"  render={()=><AdminDashboard higherProps={props}/>}  exact={true}/>
-                    <Route path="/admin/category"  render={()=><CategoryDashboard higherProps={props}/>}  exact={true}/>
-                    <Route path="/admin/category/create"  render={()=><CreateCategory higherProps={props}/>} />
+                    <Route path="/admin"  render={()=><AdminDashboard />}  exact={true}/>
+                    <Route path="/admin/category"  render={()=><CategoryDashboard/>}  exact={true}/>
+                    <Route path="/admin/category/create"  render={()=><CreateCategory />} />
                     <Route path="/admin/category/update/:id" component={UpdateCategory }   />
-                    <Route path="/admin/post/create" render={()=><CreatePost higherProps={props}/>} />
-                    <Route path="/admin/post/update/:id"  render={()=><UpdatePost higherProps={props}/>} />
+                    <Route path="/admin/post/create" render={()=><CreatePost />} />
+                    <Route path="/admin/post/update/:id" component={UpdatePost }  />
                     <Route path="/logout" render={()=><Logout/>}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
