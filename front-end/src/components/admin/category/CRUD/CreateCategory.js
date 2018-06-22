@@ -17,8 +17,6 @@ class CreateCategory extends Component{
 
     createCategory = (e)=>{
         e.preventDefault();
-        console.log(this.state);
-        console.log(this.state.name.trim().length);
         if(this.state.name.trim().length===0 || this.state.description.trim().length===0){
             document.getElementById("msg").textContent="Please fill all the inputs.";
             document.getElementById("msg").classList.add("alert-danger");
@@ -37,7 +35,7 @@ class CreateCategory extends Component{
                  document.querySelector("#msg").classList.add("alert-success");
                  document.querySelector("#msg").classList.remove("alert-danger");
                  document.querySelector("#msg").innerHTML="Your category was created!";
-                
+                 
             })
             .catch(error => {
                  console.log(error.response);
@@ -55,7 +53,7 @@ class CreateCategory extends Component{
                 
                 <div id="msg" className="alert mt-4"></div>
                 
-                <form className="my-5">
+                <form className="my-5" id="create-category-form">
                     <div className="form-group">
                         <label>Name</label>
                         <input type="text" className="form-control" placeholder="Enter category name" value={this.state.name}

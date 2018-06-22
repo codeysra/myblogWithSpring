@@ -36,7 +36,6 @@ class CategoryDashboard extends Component{
     deleteCategory = (e,{id}={})=>{
         e.preventDefault();
         const url=`http://localhost:8080/myblog/admin/category/${id}`;
-        console.log(id);
          axios({
             method:'delete',
             url:url,

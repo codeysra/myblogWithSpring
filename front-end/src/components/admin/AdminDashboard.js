@@ -68,6 +68,7 @@ class AdminDashboard extends Component{
     displayPosts =()=>{
         return (
             <div className="container">
+                <h1 className="mb-5">Admin Dashboard (Homepage)</h1>
                 <Link to="/admin/post/create" className="btn btn-outline-primary">Add New Post</Link>
                 <Link to="/admin/category" className="btn btn-primary float-right">Manage Categories</Link>
                 <div id="posts-area">
@@ -78,6 +79,7 @@ class AdminDashboard extends Component{
 
                         return  <div key={post.id} className="card">
                                     <h2 className="card-title">{post.title}</h2>
+                                    <span>Category: {post.category.name}</span>
                                     <p className="card-text">{post.smallDesc}</p>
                                     
                                     <div  dangerouslySetInnerHTML={{ __html: post.content }}></div>

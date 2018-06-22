@@ -19,6 +19,9 @@ class CreatePost extends Component {
    
 
   state={
+    post:{
+      
+    },
     model: '',
     title:"",
     smallDesc:"",
@@ -26,7 +29,8 @@ class CreatePost extends Component {
     status:false,
     category:"Test",
     publishedOn:"",
-    img:""
+    img:"",
+    categories:[]
   }
   handleModelChange= (model) =>{
     this.setState({
@@ -35,7 +39,25 @@ class CreatePost extends Component {
     console.log(this.state.model);
   }
   componentDidMount() {
-    
+    axios({
+      method:'get',
+      url:'http://localhost:8080/myblog/admin/category/',
+      
+      headers: {
+          Authorization:this.props.authentication[0]["jwt"]
+      }
+    })
+    .then(response=>{
+        this.setState(()=>({categories:response.data}));
+          console.log(this.state.categories);
+    })
+    .catch(error => {
+        console.log("An error occured: "+error);
+        console.log(error.response);
+        document.querySelector("#msg").classList.add("alert-danger");
+        document.querySelector("#msg").classList.remove("alert-success");
+        document.querySelector("#msg").innerHTML="An error occurred! Unable to GET the categories.";
+    });
   }
 
   createPost=(e)=>{
@@ -44,43 +66,48 @@ class CreatePost extends Component {
       const  formattedDate = today.getDate()+"-"+(today.getMonth()+1) + "-" + today.getFullYear();
 
       this.setState({publishedOn:formattedDate},function(){
-          
-            const data={
-                title:this.state.title,
-                smallDesc:this.state.smallDesc,
-                content:this.state.model,
-                status:false,
-                category:this.state.category,
-                publishedOn:this.state.publishedOn,
-                img:this.state.img,
-                "user": {
-                    "username": "admin"
-                }
-            };
-            axios({
-                method:'post',
-                url:'http://localhost:8080/myblog/admin/post/',
-                data:data,
-                headers: {
-                    Authorization:this.props.authentication[0]["jwt"]
-                }
-            })
-            .then(response=>{
-                 document.querySelector("#msg").classList.add("alert-success");
-                 document.querySelector("#msg").classList.remove("alert-danger");
-                 document.querySelector("#msg").innerHTML="Your post was created!";
-                
-            })
-            .catch(error => {
-                 console.log(error.response);
-                 document.querySelector("#msg").classList.add("alert-danger");
-                 document.querySelector("#msg").classList.remove("alert-success");
-                 document.querySelector("#msg").innerHTML="An error occurred! Unable to create your post.";
-            });
+          console.log(this.state.category);
+        this.state.category =  (this.state.categories.filter((category)=>{
+          return category.name == this.state.category;
+        }))[0];
+         console.log(this.state.category);
+       
+        const data={
+          title:this.state.title,
+          smallDesc:this.state.smallDesc,
+          content:this.state.model,
+          status:false,
+          category:this.state.category,
+          publishedOn:this.state.publishedOn,
+          img:this.state.img,
+          "user": {
+            "username": "admin"
+          }
+        };
+        
+        axios({
+          method:'post',
+          url:'http://localhost:8080/myblog/admin/post/',
+          data:data,
+          headers: {
+              Authorization:this.props.authentication[0]["jwt"]
+          }
+        })
+        .then(response=>{
+          document.querySelector("#msg").classList.add("alert-success");
+          document.querySelector("#msg").classList.remove("alert-danger");
+          document.querySelector("#msg").innerHTML="Your post was created!";
+        })
+        .catch(error => {
+          console.log(error.response);
+          document.querySelector("#msg").classList.add("alert-danger");
+          document.querySelector("#msg").classList.remove("alert-success");
+          document.querySelector("#msg").innerHTML="An error occurred! Unable to create your post.";
+        });
       });
       
   }
- //onChange = (editorState) => this.setState({editorState});
+ 
 
   render() {
    
@@ -102,18 +129,19 @@ class CreatePost extends Component {
             <label>img</label>
             <input type="text" className="form-control" value={this.state.img} onChange={e=>this.setState({img:e.target.value})}/>
           </div>    
-          <div className="form-group">
+          <div className="form-group my-5">
             <label >Category</label>
             <select className="form-control" onChange={e=>this.setState({category:e.target.value})}  value={this.state.category}>
-                <option value="Test">Test</option>
-                <option value="Spring">Spring</option>
-                <option value="Java">Java</option>
+              {this.state.categories.map((category) =>{
+                return (<option key={category.id} value={category.name}>{`${category.name}`}</option>)
+              })}
+                
                  
             </select>
           </div>
           <label>Content</label>
           <FroalaEditor tag='textarea' model={this.state.model}
-          onModelChange={this.handleModelChange}/>
+            onModelChange={this.handleModelChange}/>
         
            <button className="btn btn-outline-success my-5" onClick={(e)=>this.createPost(e)}>Add Post</button>
            
