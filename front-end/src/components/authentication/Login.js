@@ -29,7 +29,7 @@ class Login extends React.Component{
             }
         })
         .then(response=>{
-            console.log(response.headers["authorization"]);
+            // console.log(response.headers["authorization"]);
              this.props.dispatch(addAuth({
                 username: this.state.username,
                 jwt:response.headers["authorization"]

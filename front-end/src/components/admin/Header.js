@@ -4,6 +4,7 @@ import createHistory from 'history/createBrowserHistory'
 import {Link} from 'react-router-dom';
 import {removeAuth} from './../../actions/authentication'
 
+import {Redirect} from 'react-router-dom';
 export const history = createHistory();
 
 const Header = (props)=>{
@@ -16,10 +17,11 @@ const Header = (props)=>{
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <Link to='/logout' className="btn btn-success ml-auto">Logout</Link>    
-            </nav>
+             </nav>
         </header>
     )
 }
+ 
 // const handleLogout =(e,props)=>{
 //     e.preventDefault();
 //     const username = props.authentication[0]["username"];

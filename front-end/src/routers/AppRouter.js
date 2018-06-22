@@ -8,10 +8,10 @@ import Logout from './../components/authentication/Logout';
 import NotFoundPage from './../components/NotFoundPage';
 import {connect} from 'react-redux';
 
-const PrivateRoute = ({auth})=>{
+const PrivateRoute = (props)=>{
    
     return <Route 
-        render={() => Array.from(auth).length > 0 ? <AdminRouter/> 
+        render={() => Array.from(props.auth).length > 0 ? <AdminRouter/> 
         : <Redirect to={{pathname: '/login'}} />}
     />
 }
@@ -27,6 +27,7 @@ const HandleLogout = ({auth}) => {
 
 
 const AppRouter = (props)=>{
+   
     return (
         <BrowserRouter>
             <Switch>

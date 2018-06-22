@@ -9,10 +9,9 @@ import CreateCategory from './../components/admin/category/CRUD/CreateCategory';
 import UpdateCategory from './../components/admin/category/CRUD/UpdateCategory';
 import NotFoundPage from './../components/NotFoundPage';
 import {connect} from 'react-redux';
-import Login from './../components/authentication/Login'
-
+import Logout from '../components/authentication/Logout'
 const AdminRouter = (props)=>{
-   
+  
     return (
         <BrowserRouter>
             <div>
@@ -24,7 +23,7 @@ const AdminRouter = (props)=>{
                     <Route path="/admin/category/update/:id" component={UpdateCategory }   />
                     <Route path="/admin/post/create" render={()=><CreatePost higherProps={props}/>} />
                     <Route path="/admin/post/update/:id"  render={()=><UpdatePost higherProps={props}/>} />
-                    <Route path="logout" render={()=>props.history.push('/logout')}/>
+                    <Route path="/logout" render={()=><Logout/>}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
             </div>    

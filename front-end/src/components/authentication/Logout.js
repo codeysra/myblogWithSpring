@@ -4,15 +4,16 @@ import { removeAuth} from './../../actions/authentication';
 import {Redirect} from 'react-router-dom';
 
 class Logout extends Component{
-
+    componentDidMount(){
+        const username = this.props.authentication[0]["username"];
+        this.props.dispatch(removeAuth({username:username}));
+         
+    }
 
     render(){
-        const username = this.props.authentication[0]["username"];
-         this.props.dispatch(removeAuth({username:username}));
-        return (
+         return(
             <Redirect to={{pathname: '/login'}} />
- 
-        );
+         );
     }
 }
 
