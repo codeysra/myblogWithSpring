@@ -82,7 +82,7 @@ class CreatePost extends Component {
       });
       
   }
- onChange = (editorState) => this.setState({editorState});
+ //onChange = (editorState) => this.setState({editorState});
 
   render() {
    
@@ -98,7 +98,7 @@ class CreatePost extends Component {
           </div>
           <div className="form-group" >
                 <label>Small Desc</label>
-                <textarea class="form-control" rows="3" value={this.state.smallDesc} onChange={e=>this.setState({smallDesc:e.target.value})}></textarea>
+                <textarea className="form-control" rows="3" value={this.state.smallDesc} onChange={e=>this.setState({smallDesc:e.target.value})}></textarea>
           </div>
           <div className="form-group" >
             <label>img</label>

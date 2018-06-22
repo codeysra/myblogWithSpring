@@ -4,6 +4,8 @@ import AdminDashboard from './../components/admin/AdminDashboard.js';
 import CreatePost from '../components/admin/CRUD/CreatePost';
 import UpdatePost from '../components/admin/CRUD/UpdatePost';
 import Header from './../components/admin/Header';
+import CategoryDashboard from './../components/admin/category/CategoryDashboard';
+import CreateCategory from './../components/admin/category/CRUD/CreateCategory';
 import NotFoundPage from './../components/NotFoundPage';
 import {connect} from 'react-redux';
 import Login from './../components/authentication/Login'
@@ -17,8 +19,10 @@ const AdminRouter = (props)=>{
                 <Header higherProps={props}/>
                 <Switch>
                     <Route path="/admin"  render={()=><AdminDashboard higherProps={props}/>}  exact={true}/>
-                    <Route path="/admin/post/create" render={()=><CreatePost higherProps={props}/>} exact={true}/>
-                    <Route path="/admin/post/update/:id"  render={()=><UpdatePost higherProps={props}/>} exact={true}/>
+                    <Route path="/admin/category"  render={()=><CategoryDashboard higherProps={props}/>}  exact={true}/>
+                    <Route path="/admin/category/create"  render={()=><CreateCategory higherProps={props}/>} />
+                    <Route path="/admin/post/create" render={()=><CreatePost higherProps={props}/>} />
+                    <Route path="/admin/post/update/:id"  render={()=><UpdatePost higherProps={props}/>} />
                     
                     <Route component={NotFoundPage}/>
                 </Switch>

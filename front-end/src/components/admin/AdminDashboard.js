@@ -74,7 +74,7 @@ class AdminDashboard extends Component{
         return (
             <div className="container">
                 <Link to="/admin/post/create" className="btn btn-outline-primary">Add New Post</Link>
-               
+                <Link to="/admin/category" className="btn btn-primary float-right">Manage Categories</Link>
                 <div id="posts-area">
                
                 {
@@ -88,7 +88,7 @@ class AdminDashboard extends Component{
                                     <div  dangerouslySetInnerHTML={{ __html: post.content }}></div>
                                    
                                     <Link to={`/admin/post/update/${post.id}`} >Update>></Link>
-                                    <button className="btn btn-danger" id="delete-post" onClick={(event)=>this.deletePost(event,post)}>Delete</button>
+                                    <button className="btn btn-danger" id="delete-btn" onClick={(event)=>this.deletePost(event,post)}>Delete</button>
                                 </div>
                     })
                 }
