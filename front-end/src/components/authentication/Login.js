@@ -5,9 +5,8 @@ import {addAuth, removeAuth} from './../../actions/authentication';
 class Login extends React.Component{
     state={
         username:"",
-        password:"",
-        csrf:"" ,
-        sId:undefined
+        password:""
+       
     };
     componentDidMount(){
          
@@ -15,7 +14,6 @@ class Login extends React.Component{
             this.props.history.push('/admin');
         }
         
-
     }
     handleSubmit=(e)=>{
         e.preventDefault();

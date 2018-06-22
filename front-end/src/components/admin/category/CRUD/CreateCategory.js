@@ -11,9 +11,7 @@ class CreateCategory extends Component{
     }
 
     componentDidMount() {
-        if (this.props.authentication.length == 0) {
-          this.props.higherProps.history.push("/login");
-        }
+       
         
     }
 

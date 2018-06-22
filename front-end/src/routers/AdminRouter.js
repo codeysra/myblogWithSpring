@@ -6,13 +6,13 @@ import UpdatePost from '../components/admin/CRUD/UpdatePost';
 import Header from './../components/admin/Header';
 import CategoryDashboard from './../components/admin/category/CategoryDashboard';
 import CreateCategory from './../components/admin/category/CRUD/CreateCategory';
+import UpdateCategory from './../components/admin/category/CRUD/UpdateCategory';
 import NotFoundPage from './../components/NotFoundPage';
 import {connect} from 'react-redux';
 import Login from './../components/authentication/Login'
 
 const AdminRouter = (props)=>{
-    // console.log(props.authentication.length==0);
-    // console.log("props.authentication.length");
+   
     return (
         <BrowserRouter>
             <div>
@@ -21,9 +21,10 @@ const AdminRouter = (props)=>{
                     <Route path="/admin"  render={()=><AdminDashboard higherProps={props}/>}  exact={true}/>
                     <Route path="/admin/category"  render={()=><CategoryDashboard higherProps={props}/>}  exact={true}/>
                     <Route path="/admin/category/create"  render={()=><CreateCategory higherProps={props}/>} />
+                    <Route path="/admin/category/update/:id" component={UpdateCategory }   />
                     <Route path="/admin/post/create" render={()=><CreatePost higherProps={props}/>} />
                     <Route path="/admin/post/update/:id"  render={()=><UpdatePost higherProps={props}/>} />
-                    
+                    <Route path="logout" render={()=>props.history.push('/logout')}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
             </div>    

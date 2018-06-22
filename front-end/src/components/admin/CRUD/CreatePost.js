@@ -35,9 +35,7 @@ class CreatePost extends Component {
     console.log(this.state.model);
   }
   componentDidMount() {
-    if (this.props.authentication.length == 0) {
-      this.props.higherProps.history.push("/login");
-    }
+    
   }
 
   createPost=(e)=>{

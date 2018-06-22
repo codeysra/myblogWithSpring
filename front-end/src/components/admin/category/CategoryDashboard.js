@@ -9,11 +9,9 @@ class CategoryDashboard extends Component{
     }
 
     componentDidMount() {
-        if (this.props.authentication.length == 0) {
-          this.props.higherProps.history.push("/login");
-        }else{
-            this.retrieveAllCategories();
-        }
+      
+       this.retrieveAllCategories();
+       
         
     }
     retrieveAllCategories = ()=>{
@@ -35,9 +33,10 @@ class CategoryDashboard extends Component{
              
          });
     }
-    deleteCategory = (event,{id}={})=>{
-        event.preventDefault();
+    deleteCategory = (e,{id}={})=>{
+        e.preventDefault();
         const url=`http://localhost:8080/myblog/admin/category/${id}`;
+        console.log(id);
          axios({
             method:'delete',
             url:url,
@@ -71,8 +70,8 @@ class CategoryDashboard extends Component{
                     return  <div key={category.id} className="card">
                                 <h2 className="card-title">{category.name}</h2>
                                     <p className="card-text">{category.description}</p>
-                                    <Link to={`/admin/cateogry/update/${category.id}`} >Update>></Link>
-                                    <button className="btn btn-danger" id="delete-btn" onClick={(event,category)=>this.deleteCategory(event,category)}>Delete</button>
+                                    <Link to={`/admin/category/update/${category.id}`} >Update>></Link>
+                                    <button className="btn btn-danger" id="delete-btn" onClick={(e) => this.deleteCategory( e,category)}>Delete</button>
                             </div>
                     })
                 }

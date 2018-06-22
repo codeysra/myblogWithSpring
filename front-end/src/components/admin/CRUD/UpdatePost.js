@@ -9,9 +9,7 @@ class UpdatePost extends Component{
         id:undefined
     }
     componentDidMount(){
-        if (this.props.authentication.length == 0) {
-            this.props.higherProps.history.push("/login");
-        }
+        
         this.setState(()=>({id:this.props.match.params.id}))
         
     }
