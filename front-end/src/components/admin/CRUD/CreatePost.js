@@ -38,25 +38,7 @@ class CreatePost extends Component {
     console.log(this.state.model);
   }
   componentDidMount() {
-    axios({
-      method:'get',
-      url:'http://localhost:8080/myblog/admin/category/',
-      
-      headers: {
-          Authorization:this.props.authentication[0]["jwt"]
-      }
-    })
-    .then(response=>{
-        this.setState(()=>({categories:response.data}));
-          console.log(this.state.categories);
-    })
-    .catch(error => {
-        console.log("An error occured: "+error);
-        console.log(error.response);
-        document.querySelector("#msg").classList.add("alert-danger");
-        document.querySelector("#msg").classList.remove("alert-success");
-        document.querySelector("#msg").innerHTML="An error occurred! Unable to GET the categories.";
-    });
+    this.getAllCategories();
   }
 
   createPost=(e)=>{
@@ -148,6 +130,28 @@ class CreatePost extends Component {
        
       </div>
     );
+  }
+
+  getAllCategories = ()=>{
+    axios({
+      method:'get',
+      url:'http://localhost:8080/myblog/admin/category/',
+      
+      headers: {
+          Authorization:this.props.authentication[0]["jwt"]
+      }
+    })
+    .then(response=>{
+        this.setState(()=>({categories:response.data}));
+          console.log(this.state.categories);
+    })
+    .catch(error => {
+        console.log("An error occured: "+error);
+        console.log(error.response);
+        document.querySelector("#msg").classList.add("alert-danger");
+        document.querySelector("#msg").classList.remove("alert-success");
+        document.querySelector("#msg").innerHTML="An error occurred! Unable to GET the categories.";
+    });
   }
 }
 
