@@ -1,8 +1,20 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {addAuth, removeAuth} from './../../../actions/authentication';
-import {NavLink} from 'react-router-dom';
+
+
+// Require Editor JS files.
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+
+// Require Editor CSS files.
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+
+// Require Font Awesome.
+import 'font-awesome/css/font-awesome.css';
+
+import FroalaEditor from 'react-froala-wysiwyg';
+
 
 class UpdatePost extends Component{
     state={
@@ -16,6 +28,7 @@ class UpdatePost extends Component{
             publishedOn:"",
             img:""
         },
+        model:"",
         categories:[]
     }
     componentDidMount(){
@@ -23,7 +36,11 @@ class UpdatePost extends Component{
         this.getAllPosts();
         this.getAllCategories();   
     }
-
+    handleModelChange= (model) =>{
+        this.setState({
+          model: model
+        });
+    }
     render(){
         return (
             <div className="container">
@@ -49,7 +66,20 @@ class UpdatePost extends Component{
                                 onChange={e=> this.setState({post:{...this.state.post,img:e.target.value}})}
                             />
                         </div>
-
+                        <div className="form-group my-5">
+                            <label >Category</label>
+                            <select className="form-control" 
+                            onChange={e=>this.setState({post:{...this.state.post,category:e.target.value}})}  value={this.state.category}>
+                                {this.state.categories.map((category) =>{
+                                    return (<option key={category.id} value={category.name}>{`${category.name}`}</option>)
+                                })}
+                            </select>
+                        </div>
+                        <label>Content</label>
+                        <FroalaEditor tag='textarea' model={this.state.model}
+                            onModelChange={this.handleModelChange}/>
+        
+                        <button className="btn btn-outline-success my-5" onClick={(e)=>this.updatePost(e)}>Update Post</button>
                     </form>
 
 
@@ -60,6 +90,38 @@ class UpdatePost extends Component{
             </div>
         );
     };
+    updatePost = (e)=>{
+        e.preventDefault();
+        const chosenCategory = (this.state.categories.filter((category)=>{
+            return category.name == this.state.post.category;
+          }))[0];
+        this.setState({post:{...this.state.post,content:this.state.model,category:chosenCategory}},function(){
+            axios({
+                method:'put',
+                url:`http://localhost:8080/myblog/admin/post/${this.props.match.params.id}`,
+                data:this.state.post,
+                headers: {
+                    Authorization:this.props.authentication[0]["jwt"]
+                }
+            })
+            .then(response=>{
+                document.getElementById("msg").classList.add('alert-success');
+                document.getElementById("msg").classList.remove('alert-danger');
+                document.getElementById("msg").textContent="Post updated!";
+                  
+             })
+            .catch(error => {
+                console.log("An error occured: "+error);
+                console.log(error.response);
+                document.getElementById("msg").classList.add('alert-danger');
+                document.getElementById("msg").classList.remove('alert-success');
+                document.getElementById("msg").textContent="An error occurred while updating the post.";
+             });
+        });
+
+
+
+    }
     getAllPosts = ()=>{
         axios({
             method:'get',
@@ -71,7 +133,8 @@ class UpdatePost extends Component{
         })
         .then(response=>{
              this.setState(()=>({post:response.data}));
-             console.log(this.state.post);
+             this.setState(()=>({model:this.state.post.content}));
+            
          })
         .catch(error => {
             console.log("An error occured: "+error);

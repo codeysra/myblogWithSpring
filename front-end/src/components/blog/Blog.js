@@ -51,7 +51,7 @@ class Blog extends React.Component{
                                                     <h1 className="card-title">{post.title}</h1>
                                                     <div className="post-info py-4">
                                                         <span>Published on: {post.publishedOn}</span>
-                                                        <span className="ml-3">Category: {post.category}</span>
+                                                        <span className="ml-3">Category: {post.category.name}</span>
                                                     </div>
                                                     <p className="card-text mb-3">{post.smallDesc}</p>
                                                     <Link to={`/post/${post.id}`}>Read>></Link>
