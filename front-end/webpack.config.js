@@ -26,12 +26,25 @@ module.exports = {
             test: /\.(png|jpg|gif)$/,
             loader: 'file-loader',
             query:{
-                outputPath: './public/img/',
+                outputPath: './img/',
                 name: '[path][name]-[hash:8].[ext]'
             }
         },
-        { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000" },
-        { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+            // { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000" },
+            // { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+            {
+                // Capture eot, ttf, woff, and woff2
+                test: /\.(otf|eot|ttf|woff|svg|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                      outputPath: './fonts/',
+                      name: '[name].[ext]',
+                    },
+                  },
+                ],
+              }
         ]
     },
     devtool: 'cheap-module-eval-source-map',
