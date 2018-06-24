@@ -10,15 +10,13 @@
     "build": "webpack  --mode=development  "
   },
   "dependencies": {
-    
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    
+    "react-hot-loader": "^4.3.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.0",
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0"
-    
   },
   "devDependencies": {
     "axios": "^0.18.0",
@@ -29,27 +27,26 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.1.1",
-    "draft-js": "^0.10.5",
     "css-loader": "^0.28.11",
+    "draft-js": "^0.10.5",
     "file-loader": "^1.1.11",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "^0.0.5-beta.2",
     "froala-editor": "^2.8.1",
-    "jquery": "^3.3.1",
     "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.3.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
-    "normalize.css": "^8.0.0",
     "node-sass": "^4.9.0",
+    "normalize.css": "^8.0.0",
     "popper.js": "^1.14.3",
+    "react-confirm-alert": "^2.0.3",
+    "react-froala-wysiwyg": "^2.8.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
-    "react-froala-wysiwyg": "^2.8.1",
     "url-loader": "^1.0.1",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4"
-    
-    
   }
 }

@@ -39,6 +39,12 @@ public class PostServiceImp implements PostService{
 	public void delete(int id) {
  		this.postDAO.delete(id);
 	}
+
+	@Transactional
+	@Override
+	public void updateStatus(int id, boolean newStatus) {
+		this.postDAO.updateStatus(id, newStatus);
+	}
 	
 	
 	

@@ -65,4 +65,19 @@ public class PostDAOImp implements PostDAO {
 		query.executeUpdate();
 	}
 
+	@Override
+	public void updateStatus(int id, boolean newStatus) {
+		// Get the current hibernate session
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		Post post = session.find(Post.class, id);
+		
+		post.setStatus(newStatus);
+		
+		session.saveOrUpdate(post);
+		
+	}
+	
+	
+
 }

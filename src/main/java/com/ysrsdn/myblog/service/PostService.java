@@ -12,4 +12,6 @@ public interface PostService {
 	public Post find(int id);
 	
  	public void delete(int id);
+ 	
+ 	public void updateStatus(int id, boolean newStatus);
 }

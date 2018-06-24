@@ -3,6 +3,9 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
 import img from '../../../img/index';
 
 class AdminDashboard extends Component{
@@ -36,29 +39,64 @@ class AdminDashboard extends Component{
     }
 
     deletePost = (event,{id}={})=>{
-        event.preventDefault();
-        const url=`http://localhost:8080/myblog/admin/post/${id}`;
-         axios({
-            method:'delete',
-            url:url,
-            
-            headers: {
-                Authorization:this.props.authentication[0]["jwt"]
-            }
-        })
-        .then(response=>{
-            this.retrieveAllPosts();
-             this.displayPosts();
-        })
-        .catch(error => {
-            console.log("An error occured: "+error);
-            console.log(error.response);
-             
-         });
+        confirmAlert({
+            title: 'Confirm to Delete',
+            message: 'Are you sure to do this?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => {
+                    event.preventDefault();
+                    const url=`http://localhost:8080/myblog/admin/post/${id}`;
+                    axios({
+                        method:'delete',
+                        url:url,
+                        
+                        headers: {
+                            Authorization:this.props.authentication[0]["jwt"]
+                        }
+                    })
+                    .then(response=>{
+                        this.retrieveAllPosts();
+                        this.displayPosts();
+                    })
+                    .catch(error => {
+                        console.log("An error occured: "+error);
+                        console.log(error.response);
+                        
+                    });
+                 }
+              },
+              {
+                label: 'No',
+                onClick: () => {return;}
+              }
+            ]
+          })
+       
+        
          
-    }
+    };
     
-
+    publishPost = (e) => {
+        confirmAlert({
+          title: 'Confirm to publish',
+          message: 'Are you sure to do this?',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: () => {
+                  e.preventDefault();
+                  
+               }
+            },
+            {
+              label: 'No',
+              onClick: () => {return;}
+            }
+          ]
+        })
+      };
     render(){
         
       return  this.displayPosts()
@@ -66,6 +104,7 @@ class AdminDashboard extends Component{
     };
 
     displayPosts =()=>{
+        console.log(this.state.posts[0]);
         return (
             <div className="container">
                 <h1 className="mb-5">Admin Dashboard (Homepage)</h1>
@@ -79,6 +118,7 @@ class AdminDashboard extends Component{
 
                         return  <div key={post.id} className="card">
                                     <h2 className="card-title">{post.title}</h2>
+
                                     <span>Category: {post.category.name}</span>
                                     <p className="card-text">{post.smallDesc}</p>
                                     
@@ -86,6 +126,19 @@ class AdminDashboard extends Component{
                                    
                                     <Link to={`/admin/post/update/${post.id}`} >Update>></Link>
                                     <button className="btn btn-danger" id="delete-btn" onClick={(event)=>this.deletePost(event,post)}>Delete</button>
+                                    
+                                    <div className="my-3">Status: {
+                                        post.status===true?
+                                           <span> Published </span>
+                                        :
+                                            <span>Not Published 
+                                            <button className="ml-5 btn btn-outline-success"
+                                                onClick={this.publishPost}
+                                            >Publish</button> </span>
+                                        }
+                                        
+                                    </div>
+                                     
                                 </div>
                     })
                 }

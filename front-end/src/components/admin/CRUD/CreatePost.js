@@ -47,11 +47,11 @@ class CreatePost extends Component {
       const  formattedDate = today.getDate()+"-"+(today.getMonth()+1) + "-" + today.getFullYear();
 
       this.setState({publishedOn:formattedDate},function(){
-          console.log(this.state.category);
+          
         this.state.category =  (this.state.categories.filter((category)=>{
           return category.name == this.state.category;
         }))[0];
-         console.log(this.state.category);
+         
        
         const data={
           title:this.state.title,
@@ -59,7 +59,7 @@ class CreatePost extends Component {
           content:this.state.model,
           status:false,
           category:this.state.category,
-          publishedOn:this.state.publishedOn,
+          publishedOn:"",
           img:this.state.img,
           "user": {
             "username": "admin"
