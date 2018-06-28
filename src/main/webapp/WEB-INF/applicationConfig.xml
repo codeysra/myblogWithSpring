@@ -34,14 +34,26 @@
 
 	<!-- Configuring database data source -->
 	
-<!-- Before Switching to a DataSource Pool -->	
+<!-- Before Switching to a DataSource Pool -->
+	
+	<!-- Using MySQL as Database -->
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<property name="url" -->
+<!-- 			value="jdbc:mysql://localhost:3306/blog?useSSL=false" /> -->
+<!-- 		<property name="username" value="blog" /> -->
+<!-- 		<property name="password" value="blog" /> -->
+<!-- 	</bean> -->
+	
+	<!-- Using PostgreSQL as Database -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/blog?useSSL=false" />
-		<property name="username" value="blog" />
-		<property name="password" value="blog" />
+			value="jdbc:postgresql://localhost:5432/blog?useSSL=false" />
+		<property name="username" value="postgres" />
+		<property name="password" value="admin" />
 	</bean>
 
 <!-- Testing DataSource Pool with Hikari -->
