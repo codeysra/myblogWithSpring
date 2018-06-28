@@ -124,8 +124,7 @@
 	<security:authentication-provider>
 		<security:password-encoder hash="bcrypt" />
 		 <security:jdbc-user-service data-source-ref="dataSource"
-		 users-by-username-query="SELECT username, password, enabled FROM users 
-			WHERE username=?" 
+		 users-by-username-query="SELECT username, password, enabled FROM users WHERE username=?" 
 		 authorities-by-username-query="SELECT username, authority FROM authorities WHERE username=?" /> 
 	</security:authentication-provider>
 	</security:authentication-manager>
