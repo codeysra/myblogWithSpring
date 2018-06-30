@@ -93,12 +93,12 @@
 			<version>8.0.11</version>
 		</dependency>
 
-<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>42.2.2</version>
-</dependency>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.2</version>
+		</dependency>
 
 
 		<!-- Hibernate -->
@@ -174,7 +174,41 @@
  		
 		
 	</dependencies>
-	
-	
-	
+<!-- 	<build> -->
+<!-- 		<plugins> -->
+<!-- 			    <plugin> -->
+<!-- 			        <groupId>com.github.eirslett</groupId> -->
+<!-- 			        <artifactId>frontend-maven-plugin</artifactId> -->
+			       
+<!-- 			        <version>1.2</version> -->
+<!-- 			        <executions> -->
+<!-- 						<execution> -->
+<!-- 							<id>install node and yarn</id> -->
+<!-- 							<goals> -->
+<!-- 								<goal>install-node-and-yarn</goal> -->
+<!-- 							</goals> -->
+<!-- 							<configuration> -->
+<!-- 								<nodeVersion>v8.11.1</nodeVersion> -->
+<!-- 								<yarnVersion>v1.6.0</yarnVersion> -->
+<!-- 							</configuration> -->
+<!-- 						</execution> -->
+<!-- 						<execution> -->
+<!-- 							<id>npm install</id> -->
+<!-- 							<goals> -->
+<!-- 								<goal>npm</goal> -->
+<!-- 							</goals> -->
+<!-- 							<configuration> -->
+<!-- 								<arguments>install</arguments> -->
+<!-- 							</configuration> -->
+<!-- 						</execution> -->
+<!-- 						<execution> -->
+<!-- 							<id>webpack build</id> -->
+<!-- 							<goals> -->
+<!-- 								<goal>webpack</goal> -->
+<!-- 							</goals> -->
+<!-- 						</execution> -->
+<!-- 					</executions> -->
+<!-- 			     </plugin> -->
+<!-- 		</plugins>	 -->
+<!-- 	</build> -->
 </project>
