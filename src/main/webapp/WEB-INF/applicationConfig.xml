@@ -46,7 +46,7 @@
 <!-- 		<property name="password" value="blog" /> -->
 <!-- 	</bean> -->
 	
-	<!-- Using PostgreSQL as Database -->
+	<!-- Using PostgreSQL as Database (Locally) -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
@@ -55,6 +55,10 @@
 		<property name="username" value="postgres" />
 		<property name="password" value="admin" />
 	</bean>
+	
+	
+	
+	
 
 <!-- Testing DataSource Pool with Hikari -->
 <!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->

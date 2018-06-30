@@ -3,10 +3,13 @@ package com.ysrsdn.myblog.db;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +28,7 @@ public class TestDBConnectionPostgres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
  		// Setup connection variables
 		String jdbcUrl = "jdbc:postgresql://localhost:5432/blog?useSSL=false";
@@ -57,7 +61,8 @@ public class TestDBConnectionPostgres extends HttpServlet {
 			 while(rs.next()) {
 				 System.out.println(rs.getString(1) + " " + rs.getString(2) + " " +  rs.getString(3));
 			 }
- 		} catch (Exception e) {
+ 			
+  		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
@@ -69,6 +74,7 @@ public class TestDBConnectionPostgres extends HttpServlet {
 
 		
 	}
+	
 
 }
 

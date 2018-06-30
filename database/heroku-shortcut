@@ -1,0 +1,8 @@
+heroku pg:push postgres://postgres:admin@localhost:5432/blog postgresql-parallel-45791
+
+
+What worked:
+
+pg_dump --no-acl --no-owner -h localhost -U postgres postgres://postgres:admin@localhost:5432/blog | heroku pg:psql
+
+
