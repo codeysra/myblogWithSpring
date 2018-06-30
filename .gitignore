@@ -1,2 +1,3 @@
 /target/
 src/main/java/com/ysrsdn/myblog/db/TestDBConnectionHerokuPostgres.java
+src/main/resources/hibernate.properties

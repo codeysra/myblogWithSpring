@@ -33,6 +33,13 @@
 
 
 	<!-- Configuring database data source -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:hibernate.properties</value>
+			</list>
+		</property>
+	</bean>
 	
 <!-- Before Switching to a DataSource Pool -->
 	
@@ -41,19 +48,21 @@
 <!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
 <!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
 <!-- 		<property name="url" -->
-<!-- 			value="jdbc:mysql://localhost:3306/blog?useSSL=false" /> -->
-<!-- 		<property name="username" value="blog" /> -->
-<!-- 		<property name="password" value="blog" /> -->
+<!-- 			value="${dataSource.url}" /> -->
+<!-- 		<property name="username" value="${dataSource.username}" /> -->
+<!-- 		<property name="password" value="${dataSource.password}" /> -->
 <!-- 	</bean> -->
 	
 	<!-- Using PostgreSQL as Database (Locally) -->
+	
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://localhost:5432/blog?useSSL=false" />
-		<property name="username" value="postgres" />
-		<property name="password" value="admin" />
+			value="${dataSource.url}" />
+		<property name="username" value="${dataSource.username}" />
+		<property name="password" value="${dataSource.password}" />
 	</bean>
 	
 	
