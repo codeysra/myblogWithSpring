@@ -7,13 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Blog</title>
+
 </head>
 <body>
-Blog
- 
 
-<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-    <input type="submit" value="Logout" />
-</form:form>
+ 
+  <div id="app"></div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bundle.js"></script>
 </body>
 </html>
