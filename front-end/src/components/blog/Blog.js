@@ -18,7 +18,7 @@ class Blog extends React.Component{
     retrieveAllPosts = ()=>{
         axios({
             method:'get',
-            url:'http://localhost:8080/myblog/posts',
+            url:'http://localhost:8080/posts',
             
             headers: {
              }
