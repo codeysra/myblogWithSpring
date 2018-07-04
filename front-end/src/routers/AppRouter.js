@@ -31,7 +31,7 @@ const AppRouter = (props)=>{
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/myblog/" component={Blog} exact={true}/>
+                <Route path="/" component={Blog} exact={true}/>
                 <Route path="/post/:id" component={Post} />
                 <Route path="/login" component={Login}/>
                 <HandleLogout path="/logout" auth={props.authentication} />

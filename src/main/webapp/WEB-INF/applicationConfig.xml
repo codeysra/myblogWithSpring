@@ -44,24 +44,24 @@
 <!-- Before Switching to a DataSource Pool -->
 	
 	<!-- Using MySQL as Database -->
-<!-- 	<bean id="dataSource" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!-- 		<property name="url" -->
-<!-- 			value="${dataSource.url}" /> -->
-<!-- 		<property name="username" value="${dataSource.username}" /> -->
-<!-- 		<property name="password" value="${dataSource.password}" /> -->
-<!-- 	</bean> -->
-	
-	<!-- Using PostgreSQL as Database (Locally) -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
 			value="${dataSource.url}" />
 		<property name="username" value="${dataSource.username}" />
 		<property name="password" value="${dataSource.password}" />
 	</bean>
+	
+	<!-- Using PostgreSQL as Database (Locally) -->
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="org.postgresql.Driver" /> -->
+<!-- 		<property name="url" -->
+<!-- 			value="${dataSource.url}" /> -->
+<!-- 		<property name="username" value="${dataSource.username}" /> -->
+<!-- 		<property name="password" value="${dataSource.password}" /> -->
+<!-- 	</bean> -->
 	
 	<!-- Using Heroku PostgreSQL -->
 <!-- 	<bean class="java.net.URI" id="dbUrl"> -->

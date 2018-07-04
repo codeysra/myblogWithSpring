@@ -32,7 +32,7 @@ import com.ysrsdn.myblog.service.PostService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/admin/post/")
+@RequestMapping("/rest-api/admin/post/")
 public class AdminPostController {
 
 	@Autowired

@@ -81,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.cors();
 		http
         .addFilterBefore(new JWTAuthenticationFilter(
-                        "/login", this.tokenProvider, authenticationManager()),
+                        "/rest-api/login", this.tokenProvider, authenticationManager()),
                 UsernamePasswordAuthenticationFilter.class)
         .exceptionHandling()
         .authenticationEntryPoint(new JWTAuthenticationEntryPoint())
@@ -92,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         .and()
         .csrf()
         .disable()
-        .authorizeRequests().antMatchers("/login").permitAll().antMatchers("/admin*/**").access("hasRole('ADMIN')")
+        .authorizeRequests().antMatchers("/rest-api/login").permitAll().antMatchers("/rest-api/admin*/**").access("hasRole('ADMIN')")
         .and()
         .apply(securityConfigurerAdapter());
 	    

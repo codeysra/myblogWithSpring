@@ -19,7 +19,7 @@ import com.ysrsdn.myblog.service.CategoryService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/admin/category/")
+@RequestMapping("/rest-api/admin/category/")
 public class AdminCategoryController {
 
 	@Autowired
