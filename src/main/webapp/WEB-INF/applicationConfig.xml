@@ -44,14 +44,14 @@
 <!-- Before Switching to a DataSource Pool -->
 	
 	<!-- Using MySQL as Database -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="${dataSource.url}" />
-		<property name="username" value="${dataSource.username}" />
-		<property name="password" value="${dataSource.password}" />
-	</bean>
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<property name="url" -->
+<!-- 			value="${dataSource.url}" /> -->
+<!-- 		<property name="username" value="${dataSource.username}" /> -->
+<!-- 		<property name="password" value="${dataSource.password}" /> -->
+<!-- 	</bean> -->
 	
 	<!-- Using PostgreSQL as Database (Locally) -->
 <!-- 	<bean id="dataSource" -->
@@ -64,15 +64,15 @@
 <!-- 	</bean> -->
 	
 	<!-- Using Heroku PostgreSQL -->
-<!-- 	<bean class="java.net.URI" id="dbUrl"> -->
-<!--     	<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="org.postgresql.Driver" /> -->
-<!-- 	    <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() + '?sslmode=require' }"/> -->
-<!-- 	    <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/> -->
-<!-- 	    <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/> -->
-<!-- 	</bean> -->
+	<bean class="java.net.URI" id="dbUrl">
+    	<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+	</bean>
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+	    <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() + '?sslmode=require' }"/>
+	    <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+	    <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+	</bean>
 	
 	
 
