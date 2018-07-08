@@ -30,7 +30,6 @@ import org.springframework.validation.BindingResult;
 import com.ysrsdn.myblog.entity.Post;
 import com.ysrsdn.myblog.service.PostService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/rest-api/admin/post/")
 public class AdminPostController {

@@ -77,8 +77,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http
-		.cors();
+		// Added CORS in the first phase of development (when the Rest API run on a separate port)
+//		http
+//		.cors();
+		
 		http
         .addFilterBefore(new JWTAuthenticationFilter(
                         "/rest-api/login", this.tokenProvider, authenticationManager()),
@@ -95,33 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         .authorizeRequests().antMatchers("/rest-api/login").permitAll().antMatchers("/rest-api/admin*/**").access("hasRole('ADMIN')")
         .and()
         .apply(securityConfigurerAdapter());
-	    
-//		http
-//		.cors()
-//		.and()
-//		.sessionManagement()
-//		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//		
-//		.and()
-//        .authorizeRequests()
-//        .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-//        .antMatchers("/login").permitAll().antMatchers("/admin*/**").access("hasRole('ADMIN')")
-        
-//        .and()
-//        
-//        .formLogin()
-//        .successHandler(authenticationSuccessHandler)
-//        .failureHandler(new SimpleUrlAuthenticationFailureHandler())
-//        .and()
-//        .exceptionHandling()
-//        .authenticationEntryPoint(restAuthenticationEntryPoint)
-//        .and()
-//        .csrf().disable();
-//        .and()
-//        .addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class)
-
-        
-		
+ 
 	
 
 	}
@@ -138,6 +114,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return new SimpleUrlAuthenticationFailureHandler();
     }
 	
+    
+    
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();

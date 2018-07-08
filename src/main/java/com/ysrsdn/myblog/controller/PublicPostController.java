@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ysrsdn.myblog.entity.Post;
 import com.ysrsdn.myblog.service.PostService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class PublicPostController {
 	

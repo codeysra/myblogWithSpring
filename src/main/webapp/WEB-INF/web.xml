@@ -9,6 +9,10 @@
 
 	</welcome-file-list>
 
+<error-page>
+<error-code>404</error-code>
+<location>/error</location>
+</error-page>
 
 	<!-- Configuring Front Controller - Dispatcher -->
 	<listener>
@@ -30,7 +34,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>blog</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/rest-api/*</url-pattern>
+ 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 
@@ -44,7 +49,7 @@
 
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/rest-api/*</url-pattern>
 	</filter-mapping>
 	
 	

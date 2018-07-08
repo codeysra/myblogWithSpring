@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	
-	@RequestMapping("/html")
-	public String getHome() {
-		return "index.html";
-	}
-	@RequestMapping("/")
+
+	@RequestMapping(value= {"/*","/error"})
 	public String getHomeJSP() {
 		return "home.jsp";
 	}

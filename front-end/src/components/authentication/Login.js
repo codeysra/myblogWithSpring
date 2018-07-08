@@ -21,7 +21,7 @@ class Login extends React.Component{
        
         axios({
             method:'post',
-            url:'http://localhost:8080/myblog/login',
+            url: process.env.URL.concat('/rest-api/login'),
             data:data,
             withCredentials: true,
             headers: {

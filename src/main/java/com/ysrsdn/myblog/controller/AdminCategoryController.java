@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ysrsdn.myblog.entity.Category;
 import com.ysrsdn.myblog.service.CategoryService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/rest-api/admin/category/")
 public class AdminCategoryController {

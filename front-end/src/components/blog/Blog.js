@@ -12,16 +12,15 @@ class Blog extends React.Component{
     componentDidMount(){
         this.retrieveAllPosts();
         
-        
+      
     }
     
     retrieveAllPosts = ()=>{
         axios({
             method:'get',
-            // url:'http://localhost:8080/posts',
+            url: process.env.URL.concat('/posts'),
             
-            url:'https://youscodes.herokuapp.com/posts',
-
+            
             headers: {
              }
         })
@@ -57,6 +56,7 @@ class Blog extends React.Component{
                                                     </div>
                                                     <p className="card-text mb-3">{post.smallDesc}</p>
                                                     <Link to={`/post/${post.id}`}>Read>></Link>
+                                                    <Link to={`/login`}>Login>></Link>
                                                  </div>
                                     })
                                 }
