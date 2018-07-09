@@ -13,7 +13,8 @@ class Login extends React.Component{
        if(this.props.authentication.length>0){
             this.props.history.push('/admin');
         }
-        
+        console.log("process.env.URL");
+        console.log(process.env.URL);
     }
     handleSubmit=(e)=>{
         e.preventDefault();
