@@ -40,7 +40,6 @@ public class AdminPostController {
 	// add an initbinder ... to trim input strings and customize Date format
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
-		System.out.println("*******************");
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
  

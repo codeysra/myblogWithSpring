@@ -98,7 +98,7 @@ class UpdatePost extends Component{
         this.setState({post:{...this.state.post,content:this.state.model,category:chosenCategory}},function(){
             axios({
                 method:'put',
-                url:`http://localhost:8080/myblog/admin/post/${this.props.match.params.id}`,
+                url:process.env.URL.concat(`/rest-api/admin/post/${this.props.match.params.id}`),
                 data:this.state.post,
                 headers: {
                     Authorization:this.props.authentication[0]["jwt"]
@@ -125,7 +125,7 @@ class UpdatePost extends Component{
     getAllPosts = ()=>{
         axios({
             method:'get',
-            url:`http://localhost:8080/myblog/admin/post/${this.props.match.params.id}`,
+            url:process.env.URL.concat(`/rest-api/admin/post/${this.props.match.params.id}`),
             
             headers: {
                 Authorization:this.props.authentication[0]["jwt"]
@@ -145,7 +145,7 @@ class UpdatePost extends Component{
     getAllCategories = () =>{
         axios({
             method:'get',
-            url:'http://localhost:8080/myblog/admin/category/',
+            url:process.env.URL.concat('/rest-api/admin/category/'),
             
             headers: {
                 Authorization:this.props.authentication[0]["jwt"]

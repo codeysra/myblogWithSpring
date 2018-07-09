@@ -21,7 +21,7 @@ class AdminDashboard extends Component{
     retrieveAllPosts = ()=>{
         axios({
             method:'get',
-            url:'http://localhost:8080/myblog/admin/post/',
+            url:process.env.URL.concat('/rest-api/admin/post/'),
             
             headers: {
                 Authorization:this.props.authentication[0]["jwt"]
@@ -47,7 +47,7 @@ class AdminDashboard extends Component{
                 label: 'Yes',
                 onClick: () => {
                     event.preventDefault();
-                    const url=`http://localhost:8080/myblog/admin/post/${id}`;
+                    const url=process.env.URL.concat(`/rest-api/admin/post/${id}`);
                     axios({
                         method:'delete',
                         url:url,

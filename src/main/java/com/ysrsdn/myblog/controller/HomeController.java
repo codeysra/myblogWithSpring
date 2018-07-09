@@ -8,7 +8,7 @@ public class HomeController {
 
 	
 
-	@RequestMapping(value= {"/*","/error"})
+	@RequestMapping(value= {"/","/error"})
 	public String getHomeJSP() {
 		return "home.jsp";
 	}

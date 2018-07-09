@@ -68,7 +68,7 @@ class CreatePost extends Component {
         
         axios({
           method:'post',
-          url:'http://localhost:8080/myblog/admin/post/',
+          url:process.env.URL.concat('/rest-api/admin/post/'),
           data:data,
           headers: {
               Authorization:this.props.authentication[0]["jwt"]
@@ -135,7 +135,7 @@ class CreatePost extends Component {
   getAllCategories = ()=>{
     axios({
       method:'get',
-      url:'http://localhost:8080/myblog/admin/category/',
+      url:process.env.URL.concat('/rest-api/admin/category/'),
       
       headers: {
           Authorization:this.props.authentication[0]["jwt"]

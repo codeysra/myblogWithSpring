@@ -16,7 +16,7 @@ class UpdateCategory extends Component{
     componentDidMount() {
         axios({
             method:'get',
-            url:`http://localhost:8080/myblog/admin/category/${this.props.match.params.id}`,
+            url:process.env.URL.concat(`/rest-api/admin/category/${this.props.match.params.id}`),
             
             headers: {
                 Authorization:this.props.authentication[0]["jwt"]
@@ -37,7 +37,7 @@ class UpdateCategory extends Component{
         e.preventDefault();
         axios({
             method:'put',
-            url:`http://localhost:8080/myblog/admin/category/${this.props.match.params.id}`,
+            url:process.env.URL.concat(`/rest-api/admin/category/${this.props.match.params.id}`),
             data:this.state.category,
             headers: {
                 Authorization:this.props.authentication[0]["jwt"]

@@ -25,7 +25,7 @@ class CreateCategory extends Component{
 
             axios({
                 method:'post',
-                url:'http://localhost:8080/myblog/admin/category/',
+                url:process.env.URL.concat('/rest-api/admin/category/'),
                 data:this.state,
                 headers: {
                     Authorization:this.props.authentication[0]["jwt"]
